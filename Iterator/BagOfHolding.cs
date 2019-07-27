@@ -1,45 +1,40 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Iterator
 {
-    class EquipmentIterator
+    class BagOfHoldingIterator
     {
-        private readonly EquipmentCollection _equipmentItems;
+        private readonly BagOfHolding _items;
         private int _currentIndex = 0;
         
-        public EquipmentIterator(EquipmentCollection items)
+        public BagOfHoldingIterator(BagOfHolding items)
         {
-            this._equipmentItems = items;
+            this._items = items;
         }
 
         public Item First()
         {
             _currentIndex = 0;
-            return _equipmentItems[_currentIndex] as Item;
+            return _items[_currentIndex] as Item;
         }
         
         public Item Next()
         {
             _currentIndex += 1;
             if (!IsDone)
-                return _equipmentItems[_currentIndex] as Item;
+                return _items[_currentIndex] as Item;
             else
                 return null;
         }
 
         public Item CurrentItem
         {
-            get { return _equipmentItems[_currentIndex] as Item; }
+            get { return _items[_currentIndex] as Item; }
         }
         
         public bool IsDone
         {
-            get { return _currentIndex >= _equipmentItems.Count; }
+            get { return _currentIndex >= _items.Count; }
         }
     }
     
@@ -53,13 +48,13 @@ namespace Iterator
         }
     }
 
-    class EquipmentCollection
+    class BagOfHolding
     {
         private readonly ArrayList _items = new ArrayList();
 
-        public EquipmentIterator CreateIterator()
+        public BagOfHoldingIterator CreateIterator()
         {
-            return new EquipmentIterator(this);
+            return new BagOfHoldingIterator(this);
         }
         
         public int Count => _items.Count;

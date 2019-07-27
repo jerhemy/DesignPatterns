@@ -6,7 +6,7 @@ namespace Iterator
     {
         static void Main(string[] args)
         {
-            var collection = new EquipmentCollection
+            var bag = new BagOfHolding
             {
                 [0] = new Item("Short Sword +1"),
                 [1] = new Item("Chain Mail"),
@@ -20,10 +20,8 @@ namespace Iterator
             };
 
             // Create iterator
-            EquipmentIterator iterator = collection.CreateIterator();
-
-            Console.WriteLine("Gimme all the jelly beans!");
-
+            BagOfHoldingIterator iterator = bag.CreateIterator();
+            
             for (Item item = iterator.First();
                 !iterator.IsDone; item = iterator.Next())
             {
