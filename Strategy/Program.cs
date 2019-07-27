@@ -8,13 +8,13 @@ namespace Strategy
         {
             var Player = new Mob(100, 120, 75, 50, 150);
             
-            Player.SetCombatStrategy(WeaponType.Archery);
+            Player.SetCombatStrategy(new Archery());
             Player.Attack();
             
-            Player.SetCombatStrategy(WeaponType.OneHandedSlash);
+            Player.SetCombatStrategy(new Piercing());
             Player.Attack();
             
-            Player.SetCombatStrategy(WeaponType.Piercing);
+            Player.SetCombatStrategy(new OneHandedSlash());
             Player.Attack();
         }
     }

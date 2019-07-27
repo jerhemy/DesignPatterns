@@ -33,7 +33,7 @@ namespace Strategy
     {
         public override void Attack(Mob mob)
         {
-            var attack = (mob.Dexterity / 5) + (mob.SkillArchery / 5) / 100;
+            var attack = mob.Dexterity / 5 + mob.SkillArchery / 5 / 100;
             Console.Write($"Archery: You attack with a roll of {attack}");
         }
     }
@@ -45,7 +45,7 @@ namespace Strategy
     {
         public override void Attack(Mob mob)
         {
-            var attack = (((mob.Dexterity / 5) + (mob.Strength / 5)) / 2) + (mob.SkillPiercing / 5) / 100;
+            var attack = (mob.Dexterity / 5 + mob.Strength / 5) / 2 + mob.SkillPiercing / 5 / 100;
             Console.Write($"Piercing: You attack with a roll of {attack}");
         }
     }
@@ -80,23 +80,9 @@ namespace Strategy
             SkillPiercing = skillPiercing;
         }
         
-        public void SetCombatStrategy(WeaponType type)
+        public void SetCombatStrategy(CombatStrategy strategy)
         {
-            switch (type)
-            {
-                case WeaponType.Archery:
-                    this._combatStrategy = new Archery();
-                    break;
-                case WeaponType.OneHandedSlash:
-                    this._combatStrategy = new OneHandedSlash();
-                    break;
-                case WeaponType.Piercing:
-                    this._combatStrategy = new Piercing();
-                    break;
-                default:
-                    this._combatStrategy = new OneHandedSlash();
-                    break;
-            }
+            this._combatStrategy = strategy;
         }
         
         public void Attack()
